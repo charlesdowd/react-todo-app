@@ -5,7 +5,12 @@ function App() {
   const [ toDoList, setToDoList ] = React.useState([])
   const [ input, setInput ] = React.useState('')
   
-  console.log(input)
+  const handleSubmit = () => {
+    setToDoList((toDoList) => toDoList.concat(input))
+    setInput('')
+  }
+
+  console.log(toDoList[0])
 
   return (
     <div className="App">
@@ -15,7 +20,8 @@ function App() {
         placeholder='To Do...'
         value={input} 
         onChange={(e) => setInput(e.target.value)}/>
-        <button disabled={input.trim().length === 0}>Submit</button>
+        <button disabled={input.trim().length === 0}
+        onClick={handleSubmit}>Submit</button>
     </div>
 
   );
