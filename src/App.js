@@ -1,14 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [ toDoList, setToDoList ] = React.useState([])
+  const [ input, setInput ] = React.useState('')
+  
+  console.log(input)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>This is my edited React App!</h1>
-      </header>
+        <h1>My To Do List</h1>
+        <input
+        type='text'
+        placeholder='To Do...'
+        value={input} 
+        onChange={(e) => setInput(e.target.value)}/>
+        <button disabled={input.trim().length === 0}>Submit</button>
     </div>
+
   );
 }
 
