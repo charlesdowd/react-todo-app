@@ -22,11 +22,15 @@ function App() {
     <div className="App">
         <h1>My To Do List</h1>
         
-        <input
-        type='text'
-        placeholder='To Do...'
-        value={input} 
-        onChange={(e) => setInput(e.target.value)}/>
+        <form>
+          <label>Enter "To Do" Here:</label>
+          <input
+            type='text'
+            placeholder='To Do...'
+            value={input} 
+            onChange={(e) => setInput(e.target.value)}/>
+        </form>
+        
         
         <button disabled={input.trim().length === 0}
         onClick={handleSubmit}>Submit</button>
@@ -37,8 +41,8 @@ function App() {
               {console.log({id})}
               <li key={id}>
                 <span>{text}</span>
+                <button onClick={() => deleteToDo(id)}>X</button> 
               </li>
-              <button onClick={() => deleteToDo(id)}>X</button>  
             </div>
           ))}
         </ul>
