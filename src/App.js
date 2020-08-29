@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './App.css';
 
 function randomNumberGen() {
@@ -9,6 +9,10 @@ function App() {
   const [ toDoList, setToDoList ] = React.useState([])
   const [ input, setInput ] = React.useState('')
   
+  const handleInputChange = useCallback((event) => {
+    setInput(event.target.value)
+  }, [])
+
   const handleSubmit = () => {
     setToDoList((toDoList) => toDoList.concat({
       id: randomNumberGen(),
@@ -17,20 +21,21 @@ function App() {
     setInput('')
   }
 
+
   const deleteToDo = (id) => setToDoList((toDoList) => toDoList.filter((t) => t.id !== id))
+  
   return (
     <div className="App">
         <h1>My To Do List</h1>
         
         <form>
-          <label>Enter "To Do" Here:</label>
+          <label htmlFor='newTodo'>Enter "To Do" : </label>
           <input
-            type='text'
-            placeholder='To Do...'
+            id='newTodo'
+            name='newTodo'
             value={input} 
-            onChange={(e) => setInput(e.target.value)}/>
+            onChange={handleInputChange}/>
         </form>
-        
         
         <button disabled={input.trim().length === 0}
         onClick={handleSubmit}>Submit</button>
@@ -41,7 +46,7 @@ function App() {
               {console.log({id})}
               <li key={id}>
                 <span>{text}</span>
-                <button onClick={() => deleteToDo(id)}>X</button> 
+                <button onClick={() => deleteToDo(id)}>Remove To Do</button> 
               </li>
             </div>
           ))}
