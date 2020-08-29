@@ -12,9 +12,14 @@ input, textarea, button, p, div, section, article, select {
   width: 100%;
   font-family: sans-serif;
   font-size: 1em;
-  margin: 0.5em auto;
+  margin-top: .5em;
 }
 
 ul li {
   list-style-type: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
